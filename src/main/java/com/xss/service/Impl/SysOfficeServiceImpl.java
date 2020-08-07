@@ -1,6 +1,7 @@
 package com.xss.service.Impl;
 
 import com.xss.entity.SysOffice;
+import com.xss.mapper.SysOfficeMapper;
 import com.xss.service.SysOfficeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
@@ -22,6 +23,9 @@ import java.util.List;
 @Transactional
 @CacheConfig(cacheNames = "officeCache")//缓存配置，设置整个类的全局缓存设置
 public class SysOfficeServiceImpl extends BaseServiceImpl<SysOffice> implements SysOfficeService {
+
+    @Autowired
+    SysOfficeMapper sysOfficeMapper;
 
     @Autowired
     RedisTemplate<Object, Object> template;
@@ -70,4 +74,8 @@ public class SysOfficeServiceImpl extends BaseServiceImpl<SysOffice> implements 
         return sysOffice;
     }
 
+    @Override
+    public List<SysOffice> selectByRid(long rid){
+        return sysOfficeMapper.selectByRid(rid);
+    }
 }

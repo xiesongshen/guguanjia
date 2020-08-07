@@ -1,7 +1,9 @@
 package com.xss.controller;
 
 import com.xss.entity.Result;
+import com.xss.entity.SysResource;
 import com.xss.entity.SysUser;
+import com.xss.service.SysResourceService;
 import com.xss.service.SysUserService;
 import com.xss.utils.EncryptUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * @author XSS
@@ -23,6 +26,9 @@ import javax.servlet.http.HttpSession;
 public class CommonController {
     @Autowired
     SysUserService service;
+
+    @Autowired
+    SysResourceService sysResourceService;
 
     @RequestMapping("navbar")
     public String navbar(){
@@ -46,9 +52,13 @@ public class CommonController {
             user.setPassword(EncryptUtils.MD5_HEX(EncryptUtils.MD5_HEX(password)+username));
 
             SysUser one = service.selectOne(user);
+
             if (one!=null){
+                List<SysResource> resourceList = sysResourceService.getResourcesByUid(one.getId());
                 one.setPassword(null);
+                one.setResourceList(resourceList);
                 session.setAttribute("loginUser",one);
+                session.setAttribute("resources",resourceList);
                 return new Result(true,"登陆成功",one);
             }
         }

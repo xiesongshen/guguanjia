@@ -7,7 +7,6 @@ import org.mybatis.spring.SqlSessionFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import tk.mybatis.spring.annotation.MapperScan;
 
 import java.io.IOException;
@@ -64,10 +63,7 @@ public class SpringMybatis {
         return factoryBean;
     }
 
-    @Bean("multipartResolver")
-    public CommonsMultipartResolver getMultipartResolver(){
-        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
-        return multipartResolver;
-    }
+
+
 
 }

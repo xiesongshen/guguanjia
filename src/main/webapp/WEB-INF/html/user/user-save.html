@@ -2,69 +2,41 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
+    <base href="/guguanjia/">
     <meta charset="utf-8"/>
     <meta name="renderer" content="webkit">
-
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <title>固管家服务平台</title>
-
     <meta name="description" content="index"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
 
     <!-- bootstrap & fontawesome -->
-    <link rel="stylesheet" href="../../../static/bootstrap/bootstrap.min.css"/>
-    <link rel="stylesheet" href="../../../static/css/font-awesome.min.css"/>
-
-    <link rel="stylesheet" href="../../../static/chosen/chosen.min.css"/>
+    <link rel="stylesheet" href="static/bootstrap/bootstrap.min.css"/>
+    <link rel="stylesheet" href="static/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="static/chosen/chosen.min.css"/>
 
     <!-- ace styles -->
-    <link rel="stylesheet" href="../../../static/ace/css/ace.min.css" id="main-ace-style"/>
+    <link rel="stylesheet" href="static/ace/css/ace.min.css" id="main-ace-style"/>
+    <link rel="stylesheet" href="static/ace/css/ace-skins.min.css"/>
+    <link rel="stylesheet" href="static/ace/css/ace-rtl.min.css"/>
+    <link rel="stylesheet" href="static/ztree/metro.css"/>
+    <link rel="stylesheet" href="static/validate/css/validform.css"/>
+    <link rel="stylesheet" href="static/css/custom.css"/>
 
     <!--[if !IE]> -->
-    <script src="../../../static/jquery/jquery.js"></script>
+    <script src="static/jquery/jquery.js"></script>
     <!-- <![endif]-->
-
-    <!--[if IE]>
-    <script src="../../../static/jquery/jquery-1.11.1.min.js"></script>
-    <![endif]-->
-
-    <!--[if lte IE 9]>
-    <link rel="stylesheet" href="../../../static/ace/css/ace-part2.min.css"/>
-    <![endif]-->
-    <link rel="stylesheet" href="../../../static/ace/css/ace-skins.min.css"/>
-    <link rel="stylesheet" href="../../../static/ace/css/ace-rtl.min.css"/>
-
-    <!--[if lte IE 9]>
-    <link rel="stylesheet" href="../../../static/ace/css/ace-ie.min.css"/>
-    <![endif]-->
-
-    <link rel="stylesheet" href="../../../static/ztree/metro.css"/>
-    <link rel="stylesheet" href="../../../static/validate/css/validform.css"/>
-    <link rel="stylesheet" href="../../../static/css/custom.css"/>
-
-
     <!-- ace settings handler -->
-    <script src="../../../static/ace/js/ace-extra.min.js"></script>
-
-    <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
-
-
-    <!--[if lte IE 8]>
-    <script src="../../../static/bootstrap/html5shiv.min.js"></script>
-    <script src="../../../static/bootstrap/respond.min.js"></script>
-    <script>var ie8 = "ie8";</script>
-    <![endif]-->
+    <script src="static/ace/js/ace-extra.min.js"></script>
+    <style>
+        #profile .center>label{width: 100px;text-align: right;}
+    </style>
 </head>
 
 <body class="no-skin" id="body-content">
 <!-- 顶部条 -->
 <div id="navbar" class="navbar navbar-default">
-    <script type="text/javascript">
-        try {
-            ace.settings.check('navbar', 'fixed')
-        } catch (e) {
-        }
-    </script>
+
 
     <div class="navbar-container clearfix" id="navbar-container">
         <button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler">
@@ -203,21 +175,11 @@
 </div>
 <!-- 主体 -->
 <div class="main-container" id="main-container">
-    <script type="text/javascript">
-        try {
-            ace.settings.check('main-container', 'fixed')
-        } catch (e) {
-        }
-    </script>
+
 
 
     <div id="sidebar" class="sidebar responsive">
-        <script type="text/javascript">
-            try {
-                ace.settings.check('sidebar', 'fixed')
-            } catch (e) {
-            }
-        </script>
+
 
         <div class="sidebar-shortcuts" id="sidebar-shortcuts">
             <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
@@ -624,23 +586,13 @@
                data-icon2="ace-icon fa fa-angle-double-right"></i>
         </div>
 
-        <script type="text/javascript">
-            try {
-                ace.settings.check('sidebar', 'collapsed')
-            } catch (e) {
-            }
-        </script>
+
     </div>
 
 
     <div class="main-content">
         <div class="breadcrumbs" id="breadcrumbs">
-            <script type="text/javascript">
-                try {
-                    ace.settings.check('breadcrumbs', 'fixed')
-                } catch (e) {
-                }
-            </script>
+
 
             <ul class="tab" id="breadcrumb">
                 <!-- <li class="active" >
@@ -813,20 +765,7 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                        <script>
-                                            function addC(obj) {
-                                                var classVal = document.getElementById("user_role_update_chosen").getAttribute("class");
-                                                classVal = classVal.concat("chosen-with-drop");
-                                                document.getElementById("user_role_update_chosen").setAttribute("class", classVal);
-                                            }
 
-                                            function removeC(obj) {
-                                                var classVal = document.getElementById("user_role_update_chosen").getAttribute("class");
-                                                classVal = classVal.replace("chosen-with-drop", " ");
-                                                document.getElementById("user_role_update_chosen").setAttribute("class", classVal);
-                                            }
-
-                                        </script>
                                     </td>
                                 </tr>
                                 <tr class="FormData">
@@ -862,66 +801,7 @@
 		<i class="ace-icon fa fa-times align-top  bigger-125"></i> 取 消
 	</span>
                     </div>
-                    <!--<script type="text/javascript">
-                        $(function(){
 
-                            var sysusersave = $("#sysuser-save").Validform({
-                                ajaxPost : true,
-                                beforeSubmit:function(curform){
-                                    var loadi = layer.load(5,2);
-                                    $("#sysuser-save").data('loadi',loadi);
-                                },
-                                callback:function(data){
-                                    layer.close($("#sysuser-save").data('loadi'));
-                                    if(data>0) {
-                                        layer.msg('操作成功', 1, 1,function(){
-                                            if("false" == "true"){
-                                                location.reload();
-                                            }else{
-                                                $curmenu.trigger('click');
-                                            }
-                                            layer.closeAll();
-                                        });
-                                    }else{
-                                        layer.msg('操作失败', 3, 1);
-                                    }
-                                },
-                                tiptype : function(msg, o, cssctl) {
-                                    if (!o.obj.is("form")) {
-                                        if (o.type != 2) {
-                                            tip.errorTip(msg,o.obj);
-                                        }
-                                    }
-                                },
-                                tipSweep : true
-                            });
-
-                            $("#sysuser-save-save").click(function() {
-                                if("false" == "true"){
-
-                                }
-                                sysusersave.submitForm(false);
-                                return false;
-                            });
-
-                            $("#sysuser-save-cancel").click(function(){
-                                layer.closeAll();
-                                return false;
-                            });
-
-                            $("#sysuser-save input,#sysuser-save textarea").blur(function(){
-                                layer.closeTips();
-                                return false;
-                            })
-
-                        });
-                    </script>-->
-                    <!--<script type="text/javascript">
-
-                        //描述框自动扩张高度
-                        $('textarea[class*=autosize]').autosize({append: "\n"});
-                        $("#user-role-update").chosen({width: "100%",search_contains: true});
-                    </script>-->
                 </div>
 
 
@@ -936,39 +816,56 @@
 </div><!-- /.main-container -->
 
 <!-- 底部 -->
-<!-- basic scripts -->
+<script>
+    function addC(obj) {
+        var classVal = document.getElementById("user_role_update_chosen").getAttribute("class");
+        classVal = classVal.concat("chosen-with-drop");
+        document.getElementById("user_role_update_chosen").setAttribute("class", classVal);
+    }
 
+    function removeC(obj) {
+        var classVal = document.getElementById("user_role_update_chosen").getAttribute("class");
+        classVal = classVal.replace("chosen-with-drop", " ");
+        document.getElementById("user_role_update_chosen").setAttribute("class", classVal);
+    }
 
-<script type="text/javascript">
-    if ('ontouchstart' in document.documentElement) document.write("<script src='../../../static/jquery.mobile.custom.min.js'>" + "<" + "/script>");
 </script>
-<script src="../../../static/bootstrap/bootstrap.min.js"></script>
+<!-- basic scripts -->
+<script src="static/bootstrap/bootstrap.min.js"></script>
 
 <!-- ace scripts -->
-<script src="../../../static/ace/js/ace-elements.min.js"></script>
-<script src="../../../static/ace/js/ace.min.js"></script>
+<script src="static/ace/js/ace-elements.min.js"></script>
+<script src="static/ace/js/ace.min.js"></script>
 
 <script type="text/javascript">
-    var ctxPath = "../../..";
-    window.onload = function () {
-        /* $("#ace-settings-navbar").trigger("click");//固定头部导航栏
-        $("#ace-settings-sidebar").trigger("click");//固定左侧菜单
-        $("#ace-settings-highlight").trigger("click"); */
-    };
+    $(function(){
+        $("#navbar").load("navbar");
+        $("#sidebar").load("sidebar");
+    })
+    try{ace.settings.check('navbar' , 'fixed')}catch(e){}
+    try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+    try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
+    try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}
+    try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+
 </script>
 
 <!-- 引入其他js -->
-<script src="../../../static/js/history.js"></script>
-<script type="text/javascript" src="../../../static/layer/layer.js"></script>
-<script type="text/javascript" src="../../../static/js/spin.min.js"></script>
-<script type="text/javascript" src="../../../static/ztree/jquery.ztree.all-3.5.min.js"></script>
-<script type="text/javascript" src="../../../static/js/jquery.autosize.min.js"></script>
-<script type="text/javascript" src="../../../static/chosen/chosen.jquery.min.js"></script>
-<script type="text/javascript" src="../../../static/validate/Validform_v5.3.2_min.js"></script>
-<script type="text/javascript" src="../../../static/js/jquery.form.js"></script>
-<script type="text/javascript" src="../../../static/js/bootstrap-contextmenu.js"></script>
-<script type="text/javascript" src="../../../static/js/jquery.nicescroll.min.js"></script>
-<script type="text/javascript" src="../../../static/js/public.js"></script>
+<script src="static/js/history.js"></script>
+<script type="text/javascript" src="static/layer/layer.js"></script>
+<script type="text/javascript" src="static/js/spin.min.js"></script>
+<script type="text/javascript" src="static/ztree/jquery.ztree.all-3.5.min.js"></script>
+<script type="text/javascript" src="static/js/jquery.autosize.min.js"></script>
+<script type="text/javascript" src="static/chosen/chosen.jquery.min.js"></script>
+<script type="text/javascript" src="static/validate/Validform_v5.3.2_min.js"></script>
+<script type="text/javascript" src="static/js/jquery.form.js"></script>
+<script type="text/javascript" src="static/js/bootstrap-contextmenu.js"></script>
+<script type="text/javascript" src="static/js/jquery.nicescroll.min.js"></script>
+<script type="text/javascript" src="static/js/public.js"></script>
+<script type="text/javascript" src="static/vue/vue.js"></script>
+<script type="text/javascript" src="static/vue/axios.js"></script>
+
+<!--<script type="text/javascript" src="static/js/office/office.js"></script>-->
 
 
 </body>

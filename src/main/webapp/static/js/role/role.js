@@ -6,12 +6,12 @@ var vm = new Vue({
                 pageNum: 1,
                 pageSize: 5
             },
-            role:{
-                dataScope:''
+            role: {
+                dataScope: ''
             },
             nodes: [],
             officeName: '全部',
-            name:'',
+            name: '',
             setting: {
                 data: {
                     simpleData: {
@@ -51,17 +51,17 @@ var vm = new Vue({
             this.pageInfo.pageSize = pageSize;
             this.selectPage();
         },
-        toUsers:function(id,name){
+        toUsers: function (id, name) {
             layer.roleId = id;
-            layer.roleName=name;
+            layer.roleName = name;
             //根据角色id查询当前角色已授权人员
             axios({
-                url:`manager/sysuser/selectByRid`,
-                params:{rid:layer.roleId}
-            }).then((response)=>{
+                url: `manager/sysuser/selectByRid`,
+                params: {rid: layer.roleId}
+            }).then((response) => {
                 layer.users = response.data.obj;
                 for (let i in layer.users) {
-                    layer.users[i].show=false;
+                    layer.users[i].show = false;
                 }
                 layer.open({
                     type: 2,
@@ -70,16 +70,31 @@ var vm = new Vue({
                     content: 'manager/role/toUser',
 
                 })
-            }).catch(error=>{
+            }).catch(error => {
                 console.log(error);
             })
 
         },
+        toUpdate: function (r) {
+            layer.obj = r;
+            layer.open({
+                type: 2,
+                title: false,
+                area: ['90%', '90%'],
+                content: 'manager/role/toUpdate',
+                end: () => {
+                    /*console.log(layer.success);*/
+                    if (layer.success == undefined || !layer.success) {
+                        this.selectPage();
+                    }
+                }
+            })
+        },
         selectAll: function () {
             this.role = {
-                dataScope:''
+                dataScope: ''
             };
-            this.officeName= '全部';
+            this.officeName = '全部';
             this._selectPage(1, this.pageInfo.pageSize);
         },
         initTree: function () {
@@ -101,7 +116,7 @@ var vm = new Vue({
 
             if (treeNode.id != 0) {
                 this.role.officeId = treeNode.id;
-            }else {
+            } else {
                 this.role.officeId = '';
             }
         },
@@ -128,15 +143,15 @@ var vm = new Vue({
                 zTreeObj.updateNode(fuzzyNodes[i]);
             }
         },
-        stop:function(event){
-            if (event.target.id == "pullDownTreeone_1_switch"){
+        stop: function (event) {
+            if (event.target.id == "pullDownTreeone_1_switch") {
                 event.stopPropagation();
             }
 
         },
-        _fontCss: function (treeId,treeNode) {
+        _fontCss: function (treeId, treeNode) {
 
-            return treeNode.highLight?{color:'red'}:{color:'black'}
+            return treeNode.highLight ? {color: 'red'} : {color: 'black'}
         }
     },
     created: function () {

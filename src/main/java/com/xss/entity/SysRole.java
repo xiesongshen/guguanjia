@@ -5,6 +5,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import java.util.Date;
+import java.util.List;
 
 @Table(name = "sys_role")
 public class SysRole {
@@ -94,6 +95,52 @@ public class SysRole {
     public void setId(Long id) {
         this.id = id;
     }
+
+    @Transient
+    private List<SysResource> resources;//角色权限
+
+    @Transient
+    private List<SysResource> oldResources;//原角色权限
+
+    @Transient
+    private List<SysOffice> offices;//角色已授权公司
+
+    @Transient
+    private List<SysOffice> oldOffices;//角色原已授权公司
+
+
+    public List<SysResource> getResources() {
+        return resources;
+    }
+
+    public void setResources(List<SysResource> resources) {
+        this.resources = resources;
+    }
+
+    public List<SysResource> getOldResources() {
+        return oldResources;
+    }
+
+    public void setOldResources(List<SysResource> oldResources) {
+        this.oldResources = oldResources;
+    }
+
+    public List<SysOffice> getOffices() {
+        return offices;
+    }
+
+    public void setOffices(List<SysOffice> offices) {
+        this.offices = offices;
+    }
+
+    public List<SysOffice> getOldOffices() {
+        return oldOffices;
+    }
+
+    public void setOldOffices(List<SysOffice> oldOffices) {
+        this.oldOffices = oldOffices;
+    }
+
 
     /**
      * 获取归属机构

@@ -181,7 +181,7 @@
 															<div class="row padding-tb-10">
 																<div class="col-sm-6">
 																	<label class="inline">数据范围：</label>
-																	<select class="select " style="width: 475px" name="dataScope" id="userDataScope" v-model="role.dataScope">
+																	<select  class="width-80" name="dataScope" id="userDataScope" v-model="role.dataScope">
 																		<option value="">全部</option>
 																		<option value="1">所有数据</option>
 																		<option value="2">所在公司及以下数据</option>
@@ -278,11 +278,10 @@
 														   @click="toUsers(r.id,r.name)">
 															<i class="ace-icon fa fa-users bigger-130"></i> 分配人员
 														</a>
-														<a class="green" href="role-save.html"
+														<a class="green"
 														   data-mode="page" data-title="<测试运输方普通人员>编辑"
-														   data-url="role/edit/showlayer"
-														   data-data="{id:'27'}"
-														   data-height="80%" data-width="50%">
+														   @click="toUpdate(r)"
+														   >
 															<i class="ace-icon fa fa-pencil bigger-130"></i> 编辑
 														</a>
 

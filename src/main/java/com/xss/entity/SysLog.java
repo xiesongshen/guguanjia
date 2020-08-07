@@ -1,5 +1,7 @@
 package com.xss.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -28,6 +30,7 @@ public class SysLog {
      * 创建时间
      */
     @Column(name = "create_date")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "CTT")
     private Date createDate;
 
     /**
@@ -52,6 +55,38 @@ public class SysLog {
      * 操作方式
      */
     private String method;
+
+
+    private String exception;
+
+
+    private String params;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    private String description;
+
+    public String getParams() {
+        return params;
+    }
+
+    public void setParams(String params) {
+        this.params = params;
+    }
+
+    public String getException() {
+        return exception;
+    }
+
+    public void setException(String exception) {
+        this.exception = exception;
+    }
 
     /**
      * 获取编号

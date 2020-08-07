@@ -3,7 +3,9 @@ package com.xss.entity;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.util.Date;
+import java.util.List;
 
 @Table(name = "sys_user")
 public class SysUser {
@@ -24,6 +26,82 @@ public class SysUser {
      */
     @Column(name = "office_id")
     private Long officeId;
+
+    @Transient
+    private List<SysResource> resourceList;
+
+    public String getOfficeName() {
+        return officeName;
+    }
+
+    public void setOfficeName(String officeName) {
+        this.officeName = officeName;
+    }
+
+    @Transient
+    private String officeName;
+
+    @Transient
+    private String roleName;
+
+    @Transient
+    private Long roleId;
+
+    public Long getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(Long roleId) {
+        this.roleId = roleId;
+    }
+
+    @Override
+    public String toString() {
+        return "SysUser{" +
+                "id=" + id +
+                ", companyId=" + companyId +
+                ", officeId=" + officeId +
+                ", resourceList=" + resourceList +
+                ", officeName='" + officeName + '\'' +
+                ", roleName='" + roleName + '\'' +
+                ", roleId=" + roleId +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", no='" + no + '\'' +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", userType='" + userType + '\'' +
+                ", deviceCode='" + deviceCode + '\'' +
+                ", loginIp='" + loginIp + '\'' +
+                ", loginDate=" + loginDate +
+                ", createBy='" + createBy + '\'' +
+                ", createDate=" + createDate +
+                ", updateBy='" + updateBy + '\'' +
+                ", updateDate=" + updateDate +
+                ", remarks='" + remarks + '\'' +
+                ", delFlag='" + delFlag + '\'' +
+                ", status='" + status + '\'' +
+                ", headPicture='" + headPicture + '\'' +
+                '}';
+    }
+
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
+
+    public List<SysResource> getResourceList() {
+        return resourceList;
+    }
+
+    public void setResourceList(List<SysResource> resourceList) {
+        this.resourceList = resourceList;
+    }
 
     /**
      * 登录名

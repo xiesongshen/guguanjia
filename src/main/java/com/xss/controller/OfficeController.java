@@ -26,4 +26,10 @@ public class OfficeController {
         office.setDelFlag("0");
         return new Result(true,"查询成功",service.select(office));
     }
+
+    @RequestMapping("selectByRid")
+    public Result selectByRid(long rid){
+        return new Result(true,"查询成功",service.selectByRid(rid));
+    }
+
 }

@@ -23,7 +23,7 @@ public class RoleController {
     SysRoleService service;
 
 
-    @RequestMapping("role")
+    @RequestMapping("")
     public ModelAndView index() {
         return new ModelAndView("role/role");
     }
@@ -48,4 +48,20 @@ public class RoleController {
     public Result selectDetail(long rid ,long[] ids){
         return new Result(true,"移除人员成功",service.deleteBatch(rid,ids));
     }
+
+    @RequestMapping("toUpdate")
+    public ModelAndView toUpdate(){
+        return new ModelAndView("role/role-save");
+    }
+
+    @RequestMapping(value = "doUpdate",method = RequestMethod.PUT)
+    public Result doUpdate(@RequestBody SysRole sysRole){
+        return new Result(true,"更新成功",service.updateByPrimaryKeySelective(sysRole));
+    }
+
+    @RequestMapping("toSelect")
+    public ModelAndView toSelect(){
+        return new ModelAndView("role/role-select");
+    }
+
 }

@@ -1,5 +1,7 @@
 package com.xss.mapper;
 
+import com.xss.entity.SysOffice;
+import com.xss.entity.SysResource;
 import com.xss.entity.SysRole;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.jdbc.SQL;
@@ -53,6 +55,28 @@ public class SysRoleProvider {
 
         for (int i = 0; i < cids.size(); i++) {
             sb.append("(#{rid},#{cids["+i+"]},null,now(),null,now(),0),");
+        }
+        sb.deleteCharAt(sb.length()-1);
+        return sb.toString();
+    }
+
+    public String insertRoleResources(@Param("rid") long rid,@Param("resources") List<SysResource> resources){
+        StringBuilder sb = new StringBuilder();
+        sb.append("INSERT INTO `guguanjia`.`sys_role_resource`(`role_id`, `resource_id`, `create_by`, `create_date`, `update_by`, `update_date`, `del_flag`) VALUES ");
+
+        for (int i = 0; i < resources.size(); i++) {
+            sb.append("(#{rid},#{resources["+i+"].id},null,now(),null,now(),0),");
+        }
+        sb.deleteCharAt(sb.length()-1);
+        return sb.toString();
+    }
+
+    public String insertRoleOffices(@Param("rid") long rid,@Param("offices") List<SysOffice> offices){
+        StringBuilder sb = new StringBuilder();
+        sb.append("INSERT INTO `guguanjia`.`sys_role_office`(`role_id`, `office_id`, `create_by`, `create_date`, `update_by`, `update_date`, `del_flag`) VALUES ");
+
+        for (int i = 0; i < offices.size(); i++) {
+            sb.append("(#{rid},#{offices["+i+"].id},null,now(),null,now(),0),");
         }
         sb.deleteCharAt(sb.length()-1);
         return sb.toString();
