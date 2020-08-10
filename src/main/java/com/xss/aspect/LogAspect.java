@@ -55,15 +55,12 @@ public class LogAspect {
         sysLog.setType(e == null ? "1" : "2");
         sysLog.setException(e == null ? "" : e.toString());
         sysLog.setCreateDate(new Date());
-
         if (request != null) {
             SysUser loginUser = (SysUser) request.getSession().getAttribute("loginUser");
 
             if (loginUser != null) {
                 sysLog.setCreateBy(loginUser.getName());
             }
-
-
             sysLog.setRemoteAddr(IPUtils.getClientAddress(request));//获取ip
 
             sysLog.setUserAgent(request.getHeader("user-agent"));
@@ -81,7 +78,8 @@ public class LogAspect {
                 Object arg = args[i];
                 if (arg != null) {
                     String typeName = arg.getClass().getSimpleName();
-                    sb.append("[参数").append(i + 1).append(",类型:").append(typeName).append(",值:").append(arg.toString()).append("]");
+                    sb.append("[参数").append(i + 1).append(",类型:").
+                            append(typeName).append(",值:").append(arg.toString()).append("]");
                 } else {
                     sb.append("[参数").append(i + 1).append(",值:null]");
                 }
@@ -91,7 +89,6 @@ public class LogAspect {
             sb.deleteCharAt(sb.length()-1);
             sysLog.setParams(sb.toString());
         }
-
         service.insertSelective(sysLog);
     }
 }

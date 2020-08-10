@@ -154,20 +154,20 @@
                 <div class="col-xs-12">
                     <div id="fill-main-content" style="height:100%">
                         <div class="tabbable">
-                            <ul class="nav nav-tabs" id="myTab">
-                                <li class="active">
+                            <ul class="nav nav-tabs" id="myTab" @click="changeActive">
+                                <li :class="flag?'active':''">
                                     <a data-toggle="tab" href="#home">
                                         <i class="green ace-icon fa fa-users bigger-120"></i> 用户列表
                                     </a>
                                 </li>
 
-                                <li class=""><a data-toggle="tab" href="#profile">
+                                <li :class="!flag?'active':''"><a data-toggle="tab" href="#profile">
                                     <i class="green ace-icon fa fa-plus bigger-120"></i> 用户添加
                                 </a></li>
                             </ul>
 
                             <div class="tab-content">
-                                <div id="home" class="tab-pane active clearfix">
+                                <div id="home" class="tab-pane  clearfix" :class="flag?'active':''">
                                     <div class="widget-container-col ui-sortable">
                                         <div class="widget-box ">
                                             <div class="widget-header widget-header-small">
@@ -285,14 +285,11 @@
                                                     <div class="hidden-sm hidden-xs action-buttons">
 
                                                         <a class="green" title="编辑"
-                                                           data-mode="page" data-title="超级管理员编辑"
-
-                                                           data-width="50%">
+                                                           data-width="50%" @click="toUpdate(u)">
                                                             <i class="ace-icon fa fa-pencil bigger-130"></i>
                                                         </a>
 
-                                                        <a class="red" title="删除"
-                                                           data-mode="del" data-title="删除操作"
+                                                        <a class="red" title="删除" @click="doDel(u.id)"
                                                         >
                                                             <i class="ace-icon fa fa-trash-o bigger-130"></i>
                                                         </a>
@@ -348,35 +345,37 @@
                                     </div>
                                 </div>
 
-                                <div id="profile" class="tab-pane">
+                                <div id="profile" class="tab-pane" :class="!flag?'active':''">
                                     <form action="user/save" method="post" id="sysuser-save-form">
                                         <div class="center padding-10">
                                             <label>真实姓名：</label>
                                             <input type="text" class="width-50" name="name" datatype="*"
-                                                   nullmsg="请输入姓名！"/>
+                                                   nullmsg="请输入姓名！" v-model="u.name"/>
                                         </div>
                                         <div class="center padding-10">
                                             <label>手机：</label>
                                             <input type="text" class="width-50" name="phone" datatype="*" id="phone"
-                                                   nullmsg="请输入手机号！"
-                                                   ajaxurl="user/checkname"/>
+                                                   nullmsg="请输入手机号！" v-model="u.phone"/>
                                         </div>
                                         <div class="center padding-10">
                                             <label>密码：</label>
-                                            <input type="password" class="width-50" name="password"
+                                            <input type="password" class="width-50" name="password" v-model="u.password"
                                                    datatype="*6-16" errormsg="密码范围在6~16位之间！" nullmsg="请输入密码！"/>
                                         </div>
                                         <div class="center padding-10">
                                             <label>确认密码：</label>
-                                            <input type="password" class="width-50" name="repassword"
+                                            <input type="password" class="width-50" name="repassword" v-model="u.password"
                                                    datatype="*" recheck="password" errormsg="您两次输入的密码不一致！"
                                                    nullmsg="请输入确认密码！"/>
                                         </div>
                                         <div class="center padding-10">
                                             <label>所属角色：</label>
                                             <div class="width-50 inline text-left">
-                                                <select name="roleIds" multiple="" class="chosen-select tag-input-style"
-                                                        id="role-choose" data-placeholder="选择角色" style="display: none;">
+                                                <select v-model="u.roleId" class="width-80"
+                                                        name="roles">
+                                                    <option value="">
+                                                        选择角色
+                                                    </option>
                                                     <option value="27">
                                                         测试运输方普通人员
                                                         &nbsp;(固管家运输方测试机构)
@@ -402,53 +401,20 @@
                                                         &nbsp;(固管家服务平台)
                                                     </option>
                                                 </select>
-                                                <div class="chosen-container chosen-container-multi chosen-container-active"
-                                                     style="width: 100%;" title="" id="role_choose_chosen">
-                                                    <ul class="chosen-choices">
-                                                        <li class="search-field"><input onfocus="add(this);"
-                                                                                        onblur="remove(this);"
-                                                                                        type="text" value="选择角色"
-                                                                                        class="default"
-                                                                                        autocomplete="off"
-                                                                                        style="width: 77px;"></li>
-                                                    </ul>
-                                                    <div class="chosen-drop">
-                                                        <ul class="chosen-results">
-                                                            <li class="active-result" data-option-array-index="0">
-                                                                测试运输方普通人员 &nbsp;(固管家运输方测试机构)
-                                                            </li>
-                                                            <li class="active-result" data-option-array-index="1">单位普通人员
-                                                                &nbsp;(固管家服务平台)
-                                                            </li>
-                                                            <li class="active-result" data-option-array-index="2">单位管理员
-                                                                &nbsp;(固管家服务平台)
-                                                            </li>
-                                                            <li class="active-result" data-option-array-index="3">监管方
-                                                                &nbsp;(重庆市环境保护局)
-                                                            </li>
-                                                            <li class="active-result" data-option-array-index="4">
-                                                                固管家平台服务人员 &nbsp;(固管家服务平台)
-                                                            </li>
-                                                            <li class="active-result" data-option-array-index="5">超级管理员
-                                                                &nbsp;(固管家服务平台)
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
 
                                             </div>
                                         </div>
                                         <div class="center padding-10">
                                             <label>邮箱：</label>
-                                            <input type="text" class="width-50" name="email"/>
+                                            <input type="text" class="width-50" name="email" v-model="u.email"/>
                                         </div>
                                         <div class="center padding-10">
                                             <label style="vertical-align: top;">描述：</label>
-                                            <textarea type="text" class="width-50" name="remarks"></textarea>
+                                            <textarea type="text" class="width-50" name="remarks" v-model="u.remarks"></textarea>
                                         </div>
                                         <div class="margin-t15">
                                             <span class="btn btn-info btn-block bigger-120"
-                                                  id="sysuser-save-btn">保 存</span>
+                                                  id="sysuser-save-btn" @click="toInsert">保 存</span>
                                         </div>
                                     </form>
                                 </div>

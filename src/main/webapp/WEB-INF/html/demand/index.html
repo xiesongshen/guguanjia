@@ -39,6 +39,12 @@
     <script src="static/ace/js/ace-extra.min.js"></script>
 
 </head>
+<style>
+    #profile .center > label {
+        width: 100px;
+        text-align: right;
+    }
+</style>
 
 <body class="no-skin" id="body-content">
 <!-- 顶部条 -->
@@ -208,7 +214,7 @@
                                                            data-mode="page" data-title="需求处理"
 
                                                            data-width="60%">
-															<i class=" ace-icon fa fa-pencil bigger-130" ></i>
+                                                            <i class=" ace-icon fa fa-pencil bigger-130"></i>
                                                         </a>
 
                                                         <a href="javascript:void(0);" title="点击查看详情"
@@ -269,12 +275,7 @@
                                 </div>
                             </div>
                         </div>
-                        <style>
-                            #profile .center > label {
-                                width: 100px;
-                                text-align: right;
-                            }
-                        </style>
+
                         <!--<script>
                             $("#search-form").getPageList({'submitBtnId':'search-btn'});
                         </script>-->
@@ -301,43 +302,6 @@
 <script src="static/ace/js/ace-elements.min.js"></script>
 <script src="static/ace/js/ace.min.js"></script>
 
-<script type="text/javascript">
-    try {
-        ace.settings.check('navbar', 'fixed')
-    } catch (e) {
-    }
-
-    try {
-        ace.settings.check('main-container', 'fixed')
-    } catch (e) {
-    }
-
-    try {
-        ace.settings.check('sidebar', 'fixed')
-    } catch (e) {
-    }
-
-    try {
-        ace.settings.check('sidebar', 'collapsed')
-    } catch (e) {
-    }
-
-    try {
-        ace.settings.check('breadcrumbs', 'fixed')
-    } catch (e) {
-    }
-    window.onload = function () {
-        /* $("#ace-settings-navbar").trigger("click");//固定头部导航栏
-        $("#ace-settings-sidebar").trigger("click");//固定左侧菜单
-        $("#ace-settings-highlight").trigger("click"); */
-    };
-
-
-    $(function () {
-        $(".navbar").load("common/navbar");
-        $(".sidebar").load("common/sidebar");
-    })
-</script>
 
 <!-- 引入其他js -->
 <script src="static/js/history.js"></script>
@@ -353,8 +317,15 @@
 <script type="text/javascript" src="static/js/public.js"></script>
 <script type="text/javascript" src="static/vue/vue.js"></script>
 <script type="text/javascript" src="static/vue/axios.js"></script>
+
 <script src="static/js/demand/index.js"></script>
 <!--<script type="text/javascript" src="../../static/jquery/jquery.js"></script>-->
 
+<script>
+    $(function () {
+        $("#navbar").load("common/navbar");
+        $("#sidebar").load("common/sidebar");
+    })
+</script>
 </body>
 </html>

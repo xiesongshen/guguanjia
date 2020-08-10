@@ -1,5 +1,7 @@
 package com.xss.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -157,6 +159,7 @@ public class SysUser {
      * 最后登陆时间
      */
     @Column(name = "login_date")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "CTT")
     private Date loginDate;
 
     /**

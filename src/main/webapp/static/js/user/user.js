@@ -6,10 +6,11 @@ var vm = new Vue({
                 pageNum: 1,
                 pageSize: 5
             },
-            user:{
-                roleId:''
+            user: {
+                roleId: ''
             },
-
+            u:{},
+            flag: true,
         }
     },
     methods: {
@@ -33,69 +34,79 @@ var vm = new Vue({
             this.pageInfo.pageSize = pageSize;
             this.selectPage();
         },
-       selectAll: function () {
+        selectAll: function () {
             this.user = {
                 name: '',
-                phone:'',
-                roleId:''
+                phone: '',
+                roleId: ''
             };
             this.pId = '';
             this._selectPage(1, this.pageInfo.pageSize)
         },
-        /*toUpdate: function (user) {
-           layer.obj = user;
-           layer.open({
-               type: 2,
-               user: ['80%', '90%'],
-               fixed: false, //不固定
-               content: 'manager/sysuser/toUpdate',
-               end: () => {
-                   /!*console.log(layer.success);*!/
-                   if (layer.success == undefined || !layer.success) {
-                       this.selectPage();
-                   }
-               }
-           })
-       },
-       doDel: function (id) {
-           layer.msg('确认删除？', {
-               time: 0 //不自动关闭
-               , btn: ['是', '否']
-               , yes: index => {
-                   console.log(id);
-                   let user = {id: id, delFlag: 1};
-                   axios({
-                       url: 'manager/user/doUpdate',
-                       data: user,
-                       method: 'put'
-                   }).then((response) => {
-                       if (response.data.success) {
-                           layer.close(index);
-                           layer.msg(response.data.msg);
-                           this.selectPage();
-                       } else {
-                           layer.msg(response.data.msg)
-                       }
-                   }).catch((error) => {
-                       layer.msg(error.msg)
-                   })
-               }
-           });
-       },*/
-        /*toInsert: function () {
+        toUpdate: function (user) {
+            layer.obj = user;
             layer.open({
                 type: 2,
-                user: ['80%', '90%'],
+                area: ['80%', '70%'],
                 fixed: false, //不固定
-                content: 'manager/user/toInsert',
+                content: 'manager/sysuser/toUpdate',
                 end: () => {
-                    this.initTree();
-                    this._selectPage(1, this.pageInfo.pageSize);
+                    if (layer.success == undefined || !layer.success) {
+                        this.selectPage();
+                    }
+                }
+            })
+        },
+        doDel: function (id) {
+            layer.msg('确认删除？', {
+                time: 0 //不自动关闭
+                , btn: ['是', '否']
+                , yes: index => {
+                    console.log(id);
+                    let user = {id: id, delFlag: 1};
+                    axios({
+                        url: 'manager/sysuser/doUpdate',
+                        data: user,
+                        method: 'put'
+                    }).then((response) => {
+                        if (response.data.success) {
+                            layer.close(index);
+                            layer.msg(response.data.msg);
+                            this.selectPage();
+                        } else {
+                            layer.msg(response.data.msg)
+                        }
+                    }).catch((error) => {
+                        layer.msg(error.msg)
+                    })
                 }
             });
-        },*/
+        },
+        changeActive: function () {
+            this.flag = !this.flag;
+        },
+        toInsert: function () {
+            axios({
+                url: 'manager/sysuser/save',
+                method: 'post',
+                data: this.u
+            }).then((response) => {
+                if (response.data.success) {
+                    layer.msg(response.data.msg)
+                    this.changeActive();//修改显示状态
+                    //将对象保存后，需要初始化对象
+                    this.u = {
+                        roleId: ''
+                    };
+                    this.selectPage();
+                } else {
+                    layer.msg(response.data.msg)
+                }
 
-
+            }).catch((error) => {
+                layer.msg(error.msg)
+            })
+        }
     },
     created: function () {
         this.selectPage();

@@ -15,7 +15,8 @@ public class SysUserProvider {
         return new SQL(){{
             SELECT("sys_user.*, " +
                     "sys_office.`name` office_name, " +
-                    "sys_role.`name` role_name ");
+                    "sys_role.`name` role_name, "+
+                    "sys_role.id role_id ");
             FROM("sys_user, " +
                     "sys_office, " +
                     "sys_user_role, " +
