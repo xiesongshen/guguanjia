@@ -82,10 +82,10 @@ let vm = new Vue({
                 data:this.app
             }).then((response)=>{
                 if (response.data.success){
-                    layer.msg(response.data.msg)
+                    layer.msg(response.data.msg);
                     this.changeActive();//修改显示状态
                     //将对象保存后，需要初始化对象
-                    this.app={}
+                    this.app={};
                     this.selectPage();
                 }else {
                     layer.msg(response.data.msg)
