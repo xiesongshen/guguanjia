@@ -85,7 +85,7 @@
             <!--ajax依赖-->
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.11.1</version>
+            <version>2.12.6.1</version>
         </dependency>
         <!--aop支持依赖-->
         <dependency>
